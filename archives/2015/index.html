@@ -60,250 +60,46 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-OS-X下搭建Hexo" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
+  
     
-      <header class="article-header">
-        
-  
-    <a class="article-title" href="/2015/04/03/OS-X下搭建Hexo/">OS X下搭建Hexo</a>
-  
-
-      </header>
     
-    <time class="article-date" datetime="2015-04-02T17:01:09.000Z" itemprop="datePublished">04-03-2015</time>
+      
+      
+      <ul class="archives-wrap">
+        <li class="archive-year-wrap">
+          <a href="/archives/2015" class="archive-year">2015</a>
+        </li>
     
-  </div>
-  <div class="article-inner">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>首先，介绍一下Hexo，<a href="http://hexo.io" target="_blank" rel="external">官网</a>介绍如下:</p>
-<blockquote>
-<p> A fast, simple &amp; powerful blog framework</p>
-</blockquote>
-<p>Hexo是一个基于 Node.js 的静态博客程序,作者是台湾大学生<a href="http://zespia.tw/blog/2012/10/11/hexo-debut/" target="_blank" rel="external">tommy351</a>，其编译上百篇文字只需要几秒。hexo生成的静态网页可以直接放到GitHub Pages，BAE，SAE等平台上。</p>
-<p>P.S：Hexo有自己的<a href="http://hexo.io/docs/" target="_blank" rel="external">官方教程</a>，英文版的，但不难阅读。</p>
-</li>
-</ul>
-<h1 id="你得有一个github账户">你得有一个github账户</h1><p>   已有的直接登录，没有的直接<a href="https://github.com/" target="_blank" rel="external">sign up</a><br>   然后下载XCcode(AppStore里，翻墙下载会快很多)、<a href="http://git-scm.com/download/mac" target="_blank" rel="external">git</a>吧</p>
-<h1 id="关于下载git_for_Mac">关于下载git for Mac</h1><p>   请先下载好Xcode,然后进入git for Mac的网址，download，相关教程网上已有，这里给一个<a href="http://www.cnblogs.com/ccdev/archive/2012/09/12/2682098.html" target="_blank" rel="external">教程</a>。</p>
-<h1 id="建立一个repo">建立一个repo</h1><p>   登陆你的github，“＋”处creat a repository，名字为username(你自己的用户名).github.io,其他设置可以不用调整。然后在你的Popular repositories处会有一个repo出现。</p>
-<h1 id="下载一个Subline_Text2">下载一个Subline Text2</h1><p>  <a href="http://www.sublimetext.com/2" target="_blank" rel="external">subline官网</a>在此，下载没什么难度，点下载就可以……看清系统！接下来下好hexo之后需要用它来调整文件配置。也是一款很强大的代码编辑器。</p>
-<h1 id="下载Node-js">下载Node.js</h1><p>  网上一些教程建议使用homebew，下载很简单，需要先下载homebew，开启终端，然后输入:</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby <span class="operator">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
-<p>   这个可以自己具体搜教程，我没有使用，第一次使用时候用这个结果没成功。这里我讲的是比较原始保险的方法，进入<a href="https://nodejs.org" target="_blank" rel="external">Node.js官网</a>,整个安装很傻瓜，没什么困难的，一般nvm是打包一起下载的，基本不会出错，下载完成以后，一般都下载user里面，然后打开subline新建一个名为test.js的文件来测试是否成功。</p>
-<p>   test.js内容：<br>   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line">    http.createServer(<span class="function"><span class="keyword">function</span><span class="params">(req,res)</span></span>&#123;</span><br><span class="line">    res.writeHead(<span class="number">200</span>,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text/html'</span>&#125;);</span><br><span class="line">    res.write(<span class="string">'&lt;h1&gt;helldddo&lt;/h1&gt;'</span>);</span><br><span class="line">    res.end(<span class="string">'&lt;p&gt;Hello f&lt;/p&gt;'</span>)</span><br><span class="line">    &#125;).listen(<span class="number">3000</span>);     <span class="comment">//事件监听3000端口</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'open 2s '</span>);</span><br></pre></td></tr></table></figure></p>
-<p>   打开终端，cd ~/你的js文件所在位置，然后“node test.js”,跳出open 2s就是安装正确。<br>   具体教程可以参考<a href="http://ashan.org/post-288.html" target="_blank" rel="external">此处</a>。</p>
-<h1 id="安装hexo">安装hexo</h1><p>   前面只是铺路，这里开始才是真正搭建hexo的步骤，打开Finder在user里建立一个名为Hexo的文件夹，终端cd到Hexo文件夹里，然后，你可以直接在终端输入：<br>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
-<p>   如果没有报错（除非前面安装有问题，不然一般不会报错，有问题的话，如果是node.js的问题，测试时应该发现了），就应该继续输入：<br>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure></p>
-<h1 id="配置hexo">配置hexo</h1><ul>
-<li>打开hexo文件夹，有一个yml文件：_config.yml</li>
-<li><p>用subline打开它，里面有很多配置可以个性化，<a href="http://heymz.com/2014/10/12/hexo博客搭建教程：-四-博客的配置和使用-jacman主题/" target="_blank" rel="external">详情参考</a>。<br>基本配置是在最后，你需要改为如下：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># Deployment&#10;## Docs: http://hexo.io/docs/deployment.html&#10;deploy:&#10;   type: git&#10;   repository: https://github.com/your_github_username/username.github.io&#10;   branch: master</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>这里要当心的是冒号后面一定要有一个空格，否则后面会一直报错，之前见过一个安装指南，建议repository最好用http格式，而不是git@github:your_github_username/username.github.io，不明觉厉。<br>至此，你基本上安装好了，还有两个命令。<br>还是打开终端，进入Hexo，进入init目录（一定要这样！不过只是第一次需要这样。），输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>生成静态页面至hexo\public\目录，要注意的是当你修改文章Tag或内容，不能正确重新生成内容，可以删除hexo\db.json后重试，还不行就到public目录删除对应的文件，重新生成。</p>
-</li>
-<li><p>你可以本地启动试试，打开终端进入Hexo文件夹，输入</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>然后浏览器输入“<a href="http://localhost:4000”，你可以看到你的blog搭建完成，最后，用ctrl＋c结束本地启动。" target="_blank" rel="external">http://localhost:4000”，你可以看到你的blog搭建完成，最后，用ctrl＋c结束本地启动。</a></p>
-</li>
-<li>最后，打开终端进入Hexo文件夹，输入：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy <span class="comment">#或者直接：hexo d（hexo许多命令可以直接输首字母完成）</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>大概过十来分钟，请浏览你的博客（<a href="http://username.github.io），此时你的blog就搭建成功了。" target="_blank" rel="external">http://username.github.io），此时你的blog就搭建成功了。</a></p>
-<h1 id="以下是一些参考的网址：">以下是一些参考的网址：</h1><ul>
-<li><a href="http://blog.csdn.net/poem_of_sunshine/article/details/29369785/" target="_blank" rel="external">如何搭建一个独立博客——简明Github Pages与Hexo教程</a></li>
-<li><a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="external">hexo你的博客（搭建教程）</a></li>
-<li><a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">Hexo搭建Github静态博客</a></li>
-<li><a href="http://xuanwo.org/2014/08/14/hexo-usual-problem/" target="_blank" rel="external">Hexo常见问题解决方案</a></li>
-<li><a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">All Themes</a></li>
-<li><a href="http://hexo.io/themes/" target="_blank" rel="external">Themes／hexo博客主题</a></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/04/03/OS-X下搭建Hexo/" data-id="ci81c2t2100054wxalkzg7776" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
+    <li class="archives">
+    <time class="archive-article-date" datetime="2015-04-02T17:01:09.000Z" itemprop="datePublished">2015-04-03</time>
 
   
-    <article id="post-java复习纪录1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
+    <a class="archive-article-title" href="/2015/04/03/OS-X下搭建Hexo/">OS X下搭建Hexo</a>
+  
+
+  
     
-      <header class="article-header">
-        
-  
-    <a class="article-title" href="/2015/04/01/java复习纪录1/">java复习纪录1</a>
-  
-
-      </header>
     
-    <time class="article-date" datetime="2015-04-01T06:23:05.000Z" itemprop="datePublished">04-01-2015</time>
+    <li class="archives">
+    <time class="archive-article-date" datetime="2015-04-01T06:23:05.000Z" itemprop="datePublished">2015-04-01</time>
+
+  
+    <a class="archive-article-title" href="/2015/04/01/java复习纪录1/">java复习纪录1</a>
+  
+
+  
     
-  </div>
-  <div class="article-inner">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>注意一些boolean运算符，例如“a||b”（或），“condition？expression1:expression2”（contion为真计算第一个，否则第二个）<ul>
-<li>注意一些运算符的优先级（见java书p65）</li>
-</ul>
-</li>
-<li>java提供一些常用的三角函数，在Math类里面</li>
-<li><h3 id="强制类型转换">强制类型转换</h3><p> 四舍五入则使用Math.round方法<br> int nc = (int)Math.round(x)</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> x = <span class="number">9.997</span></span><br><span class="line"><span class="keyword">int</span> nx = (<span class="keyword">int</span>)x;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><h3 id="截取字符串获得子串">截取字符串获得子串</h3> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String greeting = <span class="string">"hello"</span></span><br><span class="line">String s = greeting.substring(<span class="number">0</span>,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><h3 id="检测数据是否相等">检测数据是否相等</h3><p>“==”运算符用于比较两个对象的内存地址值是否相等，equals()方法用于比较两个对象的内容是否一致。</p>
-<ul>
-<li>如果是判断简单的int等数值，直接用“＝＝”</li>
-<li>如果是判断字符串是否相等，使用“。equals（）”</li>
-<li>如果判断字符串对象是否是同一个，使用“＝＝”  </li>
-</ul>
-</li>
-<li>Java里面有许多关于字符串的API，可以调用许多关于字符串的方法</li>
-<li>一些简单的表达式（“+=”,”-=”,”++”）</li>
-<li><h3 id="一些基本的程序结构设计">一些基本的程序结构设计</h3><ul>
-<li><p>选择结构</p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(abc)</span><br><span class="line">  &#123;asdfgh;&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">   asdfgh;&#125;</span><br><span class="line"><span class="keyword">switch</span>(abc)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">case</span> 选择值<span class="number">1</span>:语句主体<span class="number">1</span>；</span><br><span class="line">        <span class="keyword">break</span>；</span><br><span class="line">  <span class="keyword">case</span> 选择值<span class="number">2</span>:语句主体<span class="number">2</span>；</span><br><span class="line">        <span class="keyword">break</span>；</span><br><span class="line">  <span class="keyword">default</span>: 语句主体；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><h3 id="数组">数组</h3><ul>
-<li>一维数组<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">int</span> score[];</span><br><span class="line"> score = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>];</span><br><span class="line"><span class="keyword">int</span> score[] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>多维数组（二维数组为例）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">数据类型 数组名[][]=&#123;</span><br><span class="line">                  &#123;第<span class="number">0</span>行初值&#125;,</span><br><span class="line">                  &#123;第<span class="number">1</span>行数值&#125;,  </span><br><span class="line">                    &#125;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><h3 id="Java中和类名相同的方法：">Java中和类名相同的方法：</h3></li>
-</ul>
-<p>在Java中,任何变量在被使用前都必须先设置初值.Java提供了为类的成员变量赋初值的专门功能:</p>
-<p>构造方法(constructor)构造方法是一种特殊的成员方法,它的特殊性反映在如下几个方面: </p>
-<blockquote>
-<p>1.构造方法的名字必须与定义他的类名完全相同，没有返回类型，甚至连void也没有。<br>2.构造方法的调用是在创建一个对象时使用new操作进行的。构造方法的作用是初始化对象。 　　</p>
-<p>3.每个类可以有零个或多个构造方法. 　　</p>
-<p>4.不能被static、final、synchronized、abstract和native修饰。构造方法不能被子类继承。 　　</p>
-<p>5.构造方法在创建对象时自动执行,一般不能显式地直接调用. 　</p>
-</blockquote>
-<p>　构造方法可以被重载。没有参数的构造方法称为默认构造方法，与一般的方法一样，构造方法可以进行任何活动，但是经常将他设计为进行各种初始化活动，比如初始化对象的属性。当构造方法私有时，只能在所在类使用。 　
-　</p>
-<p>　具体使用：分别计算长、宽为20、10和6、3的两个长方形的面积。 　　</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RectConstructor</span></span>&#123; 　　</span><br><span class="line">                   <span class="keyword">double</span> length; 　　</span><br><span class="line">                   <span class="keyword">double</span> width; 　　</span><br><span class="line">                   <span class="function"><span class="keyword">double</span> <span class="title">area</span><span class="params">()</span></span>&#123; 　<span class="keyword">return</span> length*width; 　　&#125; 　　</span><br><span class="line">                   RectConstructor(<span class="keyword">double</span> width,<span class="keyword">double</span> length)&#123;<span class="comment">//带参数的构造方法 　　                   </span></span><br><span class="line">                   <span class="keyword">this</span>.length=length; 　　<span class="keyword">this</span>.width=width; 　　&#125; 　　&#125; 　　</span><br><span class="line">                   <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RectDemo</span></span>&#123; 　　<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123; 　　  </span><br><span class="line">                   RectConstructor rect1=<span class="keyword">new</span> RectConstructor(<span class="number">10</span>,<span class="number">20</span>); 　　</span><br><span class="line">                   RectConstructor rect2=<span class="keyword">new</span> RectConstructor(<span class="number">3</span>,<span class="number">6</span>); 　　</span><br><span class="line">                   <span class="keyword">double</span> ar; 　　</span><br><span class="line">                   ar=rect1.area(); </span><br><span class="line">                   System.out.println(<span class="string">"第一个长方形的面积是"</span>+ar);</span><br><span class="line">                   ar=rect2.area();</span><br><span class="line">                   System.out.println(<span class="string">"第二个长方形的面积是"</span>+ar); 　　&#125; 　　</span><br><span class="line">                     &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><h3 id="Java里的内部类">Java里的内部类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">//外部类</span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Out</span> </span>&#123;</span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">int</span> age = <span class="number">12</span>;     </span><br><span class="line">   <span class="comment">//内部类</span></span><br><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">In</span> </span>&#123;</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span> </span>&#123;</span><br><span class="line">           System.out.println(age);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       Out.In in = <span class="keyword">new</span> Out().new In();<span class="comment">//实例化in这个类</span></span><br><span class="line">       in.print();</span><br><span class="line">       <span class="comment">//或者采用下种方式访问</span></span><br><span class="line">       <span class="comment">/*</span><br><span class="line">       Out out = new Out();</span><br><span class="line">       Out.In in = out.new In();</span><br><span class="line">       in.print();</span><br><span class="line">       */</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>Answer=12<br>程序编译过后会产生两个.class文件，分别是Out.class和Out$In.class。其中$代表了上面程序中Out.In中的那个 .Out.In in = new Out().new In()可以用来生成内部类的对象，这种方法存在两个小知识点需要注意</p>
-<p>　　1.开头的Out是为了标明需要生成的内部类对象在哪个外部类当中</p>
-<p>　　2.必须先有外部类的对象才能生成内部类的对象，因为内部类的作用就是为了访问外部类中的成员变量</p>
-<ul>
-<li><h3 id="Java中静态变量和常量">Java中静态变量和常量</h3><ul>
-<li>静态变量是第一次访问类的时候加载到虚拟机里的，属于类级别的</li>
-<li>常量(final)只要第一次赋值，以后就不能再赋值了。</li>
-<li>相同点：因为都是静态的，所以都在类第一次加载的时候分配内存空间</li>
-<li>不同点：就是常量和变量的区别，常量只能在初始化的时候赋值，以后值不可改变。</li>
-</ul>
-</li>
-<li><h3 id="类的属性">类的属性</h3><ul>
-<li>非静态内部类可以定义静态常量，不可以定义静态成员变量、静态方法、静态内部类</li>
-<li>静态内部类可以定义静态（非静态）方法、静态成员变量、静态（非静态）内部类  </li>
-</ul>
-</li>
-<li><h3 id="类的方法">类的方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">type <span class="title">name</span><span class="params">(参数列表)</span>｛</span><br><span class="line">/方法主体</span><br><span class="line">｝</span></span><br></pre></td></tr></table></figure>
-<p>所有的方法均在类中声明，type指定了由方法返回的数据类型。如果没有返回值，则其返回类型必须是void。</p>
-</li>
-<li><h3 id="类的封装">类的封装</h3><p>涉及到变量的封装和方法的封装</p>
-</li>
-<li><h3 id="super关键字的使用">super关键字的使用</h3>super关键字出现在子类（一般在子类的构造方法中），调用了父类的构造方法，主要功能是子类调用父类中的内容。</li>
-<li><h3 id="类的继承">类的继承</h3><ul>
-<li>父类可以在变量或者方法前加privated来限制子类的访问</li>
-</ul>
-</li>
-<li><h3 id="类的多态实例">类的多态实例</h3><ul>
-<li>向上转型</li>
-<li>向下转型 Person p = new Student();将父类转化为子类实现</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/04/01/java复习纪录1/" data-id="ci81c2t1s00014wxaykjor9ng" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
     
-      <header class="article-header">
-        
-  
-    <a class="article-title" href="/2015/01/01/hello-world/">Hello World</a>
-  
-
-      </header>
-    
-    <time class="article-date" datetime="2014-12-31T16:00:00.000Z" itemprop="datePublished">01-01-2015</time>
-    
-  </div>
-  <div class="article-inner">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/01/01/hello-world/" data-id="ci81c2t1z00044wxaqfezr806" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
+    <li class="archives">
+    <time class="archive-article-date" datetime="2014-12-31T16:00:00.000Z" itemprop="datePublished">2015-01-01</time>
 
   
+    <a class="archive-article-title" href="/2015/01/01/hello-world/">Hello World</a>
+  
+
+  
+  
+    </li></ul>
   
 </section>
         
